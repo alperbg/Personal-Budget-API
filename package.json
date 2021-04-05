@@ -1,0 +1,25 @@
+{
+  "name": "personal-budget-api",
+  "version": "1.0.0",
+  "description": "Personal Budget API allows users to manage budget envelopes and track the balance of each envelope.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alperbg/Personal-Budget-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alperbg/Personal-Budget-API/issues"
+  },
+  "homepage": "https://github.com/alperbg/Personal-Budget-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
