@@ -11,7 +11,7 @@ app.get('/',(req,res,next) => {
 })
 
 
-const envolopes = [
+let envolopes = [
     {   
         'id':'1',
         'envolope': 'tax', 
@@ -48,7 +48,6 @@ app.get('/envolopes',(req,res,next) => {
 });
 
 app.get('/envolopes/:id',(req,res,next) => {
-    console.log(req.params.id)
 
     const {id} = req.params;
     const result = envolopes.filter(envolopeObj => envolopeObj.id === id)
@@ -59,12 +58,10 @@ app.get('/envolopes/:id',(req,res,next) => {
         })
         console.log('result boş hata mesajı')
     }
-    console.log(result)
     res.status(200).send(result[0]);
 })
 
 app.put('/envolopes/:id',(req,res,next) => {
-    console.log(req.params.id)
 
     const {id} = req.params;
 
@@ -74,7 +71,6 @@ app.put('/envolopes/:id',(req,res,next) => {
         res.status(404).send({
             message : "Not Found"
         })
-        console.log('result boş hata mesajı')
     }
 
     const information = req.body;
@@ -84,6 +80,28 @@ app.put('/envolopes/:id',(req,res,next) => {
     console.log(envolopes)
     res.status(200).send(envolopes);
 })
+
+app.delete('/envolopes/:id',(req,res,next) => {
+
+    const {id} = req.params;
+    const result = envolopes.filter(envolopeObj => envolopeObj.id !== id)
+
+    if (result.length === envolopes.length) {
+        res.status(404).send({
+            message : "Not Found"
+        })
+        return
+    }
+    envolopes = Array.from(result);
+
+    console.log(envolopes)
+    res.status(200).send({
+        status : 200,
+        message : "envolope deleted successfully"
+    });
+})
+
+
 
 app.listen(PORT,() => {
     console.log(`listening on port ${PORT}`)
