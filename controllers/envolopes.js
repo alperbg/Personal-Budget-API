@@ -1,4 +1,4 @@
-const envolopes = require('../config/db')
+let envolopes = require('../config/db')
 
 const getAllEnvolopes = (req,res,next) => {
     res.status(200).send(envolopes)
