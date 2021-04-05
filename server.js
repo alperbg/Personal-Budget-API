@@ -51,7 +51,7 @@ app.get('/envolopes/:id',(req,res,next) => {
     console.log(req.params.id)
 
     const {id} = req.params;
-    result = envolopes.filter(envolopeObj => envolopeObj.id === id)
+    const result = envolopes.filter(envolopeObj => envolopeObj.id === id)
 
     if (result.length === 0) {
         res.status(404).send({
@@ -61,6 +61,28 @@ app.get('/envolopes/:id',(req,res,next) => {
     }
     console.log(result)
     res.status(200).send(result[0]);
+})
+
+app.put('/envolopes/:id',(req,res,next) => {
+    console.log(req.params.id)
+
+    const {id} = req.params;
+
+    const envolopeIndex = envolopes.findIndex(envolopeObj => envolopeObj.id === id)
+
+    if (envolopeIndex === -1) {
+        res.status(404).send({
+            message : "Not Found"
+        })
+        console.log('result boş hata mesajı')
+    }
+
+    const information = req.body;
+
+    envolopes[envolopeIndex] = information
+    
+    console.log(envolopes)
+    res.status(200).send(envolopes);
 })
 
 app.listen(PORT,() => {
